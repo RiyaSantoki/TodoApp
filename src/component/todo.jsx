@@ -98,6 +98,12 @@ const[items, setItems] = useState((getLocalItemes));
 const[toggleSubmit,setToggleSubmit] = useState(true);
 const[isEditItem, setIsEditItem] = useState(null);
 
+//date
+
+function myFunction() {
+  var x = document.getElementsByName("date")[0].tagName;
+  document.getElementById("showdate").innerHTML = x;
+}
 
 //AddItem
 
@@ -187,11 +193,14 @@ const editItem = (id) => {
                     value={inputData} 
                     style={{ marginTop: 8 }}
                     onChange={(e) => setInputData(e.target.value)}/>
+
                     <form  noValidate fullWidth={true}>
                       <TextField
+                        id='date'
+                        name='date'
                         required={true}
                         label="When will you complete your task?"
-                        type="date"             
+                        type="date"          
                         fullWidth={true}
                         InputLabelProps={{
                           shrink: true,
@@ -200,8 +209,8 @@ const editItem = (id) => {
                     </form>
 
                     {
-                        toggleSubmit ? <Button variant="contained" color="primary" id="date_button"  type="Submit" startIcon={<AddIcon />}  style={{ marginTop: 5 }}  onClick={addItem} onclick={document.getElementById('date_button').innerHTML = Date()}> Add Item </Button>:
-                        <Button variant="contained" color="secondary" id="date_button"  type="Submit" startIcon={<EditIcon />} style={{ marginTop: 5 }}  onClick={addItem} onclick={document.getElementById('date_button').innerHTML = Date()}> Update Item </Button>
+                        toggleSubmit ? <Button variant="contained" color="primary" id="date_button"  type="Submit" startIcon={<AddIcon />}  style={{ marginTop: 5 }}  onClick={addItem} onclick={myFunction()}> Add Item </Button>:
+                        <Button variant="contained" color="secondary" id="date_button"  type="Submit" startIcon={<EditIcon />} style={{ marginTop: 5 }}  onClick={addItem} > Update Item </Button>
                     }
                     
                 </FormControl>
@@ -216,7 +225,7 @@ const editItem = (id) => {
                                     
                                     <Typography variant="h5" component="h2" key={elem.id} >
                                         {elem.name}
-                                        <Typography variant="h6" component="h1" id="Date" >
+                                        <Typography variant="h6" component="h1" id="showdate" name="showdate" >
                                           
                                         <IconButton style={{float:"right" } } >
                                             <Delete style= {{color: "Red" }} onClick={() => deleteItem(elem.id)} />
