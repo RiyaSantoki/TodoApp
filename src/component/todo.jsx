@@ -94,20 +94,10 @@ const Todo = () => {
 const classes = useStyles();
 
 const [inputData, setInputData] = useState('');
-//const [inputDate, setInputDate] = useState('');
 const[items, setItems] = useState((getLocalItemes));
-//const[dates, setDates] = useState((getLocalItemes));
 const[toggleSubmit,setToggleSubmit] = useState(true);
 const[isEditItem, setIsEditItem] = useState(null);
-//const[isEditDate, setIsEditDate] = useState(null);
 
-
-//date
-
-/*let today = new Date();
-
-let date=today.getFullYear() + '-' + (today.getMonth()+1) + '-' + today.getDate() +' '+ today.getHours()+':'+ today.getMinutes()+':'+ today.getSeconds();
-console.log(date)*/
 
 //AddItem
 
@@ -135,9 +125,8 @@ const addItem = () => {
     setItems([...items, allInputData]);
     setInputData('')
     }
-}
 
-
+  }
 //deleteItem
 
 const deleteItem = (index) =>{
@@ -192,26 +181,27 @@ const editItem = (id) => {
                 <FormControl fullWidth={true}>
                     {/*additem*/}
                     
-                    <TextField label="I Will Do This" required={true}  
-                    value={inputData} style={{ marginTop: 8 }}
+                    <TextField 
+                    label="I Will Do This" 
+                    required={true}  
+                    value={inputData} 
+                    style={{ marginTop: 8 }}
                     onChange={(e) => setInputData(e.target.value)}/>
                     <form  noValidate fullWidth={true}>
                       <TextField
                         required={true}
-                        /*value={inputDate}*/
                         label="When will you complete your task?"
-                        type="date"
-                        /*onChange={(e) => setInputDate(e.target.value)}*/
-                        className={classes.textField}
+                        type="date"             
                         fullWidth={true}
                         InputLabelProps={{
                           shrink: true,
                         }}
                       />
                     </form>
+
                     {
-                        toggleSubmit ? <Button variant="contained" color="primary"  type="Submit" startIcon={<AddIcon />}  style={{ marginTop: 5 }}  onClick={addItem} > Add Item </Button>:
-                        <Button variant="contained" color="secondary"  type="Submit" startIcon={<EditIcon />} style={{ marginTop: 5 }}  onClick={addItem}> Update Item </Button>
+                        toggleSubmit ? <Button variant="contained" color="primary" id="date_button"  type="Submit" startIcon={<AddIcon />}  style={{ marginTop: 5 }}  onClick={addItem} onclick={document.getElementById('date_button').innerHTML = Date()}> Add Item </Button>:
+                        <Button variant="contained" color="secondary" id="date_button"  type="Submit" startIcon={<EditIcon />} style={{ marginTop: 5 }}  onClick={addItem} onclick={document.getElementById('date_button').innerHTML = Date()}> Update Item </Button>
                     }
                     
                 </FormControl>
@@ -226,14 +216,15 @@ const editItem = (id) => {
                                     
                                     <Typography variant="h5" component="h2" key={elem.id} >
                                         {elem.name}
-                                      
+                                        <Typography variant="h6" component="h1" id="Date" >
+                                          
                                         <IconButton style={{float:"right" } } >
                                             <Delete style= {{color: "Red" }} onClick={() => deleteItem(elem.id)} />
                                         </IconButton>
                                         <IconButton style={{float:"right" }} >
                                             <Edit style= {{color: "blue" }} onClick={() => editItem(elem.id)} />
                                         </IconButton>
-                                        
+                                        </Typography>
                                   </Typography>
                                     
                                 </CardContent>
